@@ -129,8 +129,8 @@ function nomalDiceRoller(inputStr){
       if (DiceToRoll.match('d') == null) return undefined;
       finalStr = finalStr +'\n' + i + '# ' + DiceCal(DiceToRoll);
     }
-    if(finalStr.match('200D')!= null) finalStr = '欸欸，不支援200D以上擲骰；哪個時候會骰到兩百次以上？想被淨灘嗎？';
-    if(finalStr.match('D500')!= null) finalStr = '不支援D1和超過D500的擲骰；想被淨灘嗎？';
+    if(finalStr.match('200D')!= null) finalStr = '200D想搞死誰!!!!';
+    if(finalStr.match('D500')!= null) finalStr = 'D1跟D500以上都來亂的啦!!!!';
     
   } 
   
