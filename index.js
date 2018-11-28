@@ -129,8 +129,8 @@ function nomalDiceRoller(inputStr){
       if (DiceToRoll.match('d') == null) return undefined;
       finalStr = finalStr +'\n' + i + '# ' + DiceCal(DiceToRoll);
     }
-    if(finalStr.match('200D')!= null) finalStr = '200D想搞死誰!!!!';
-    if(finalStr.match('D500')!= null) finalStr = 'D1跟D500以上都來亂的啦!!!!';
+    if(finalStr.match('200D')!= null) finalStr = '200D以上想搞死誰!!!!';
+    if(finalStr.match('D500')!= null) finalStr = 'D1跟D500以上都來亂的啦!!';
     
   } 
   
@@ -160,8 +160,8 @@ function DiceCal(inputStr){
   let equation = DiceToRoll;
   while(equation.match(/\d+d\d+/)!=null) {
     let tempMatch = equation.match(/\d+d\d+/);    
-    if (tempMatch.toString().split('d')[0]>200) return '欸欸，不支援200D以上擲骰；哪個時候會骰到兩百次以上？想被淨灘嗎？';
-    if (tempMatch.toString().split('d')[1]==1 || tempMatch.toString().split('d')[1]>500) return '不支援D1和超過D500的擲骰；想被淨灘嗎？';
+    if (tempMatch.toString().split('d')[0]>200) return '200D以上你給我自己去骰實體骰看看吼';
+    if (tempMatch.toString().split('d')[1]==1 || tempMatch.toString().split('d')[1]>500) return '骰D1還需要問我嗎???500D想幹嘛!?';
     equation = equation.replace(/\d+d\d+/, RollDice(tempMatch));
   }
   
@@ -237,8 +237,8 @@ function CoC7th(inputStr){
     let AppDebuffArr = [0,0,5,10,15,20,25]
     let EDUincArr = [0,1,2,3,4,4,4]
 
-    if (old < 15) return ReStr + '等等，核心規則不允許小於15歲的人物哦。';    
-    if (old >= 90) return ReStr + '等等，核心規則不允許90歲以上的人物哦。'; 
+    if (old < 15) return ReStr + '等等，核心規則不允許小於15歲的人物哦，我要叫警察囉。';    
+    if (old >= 90) return ReStr + '等等，核心規則不允許90歲以上的人物哦，老練的棒棒太over。'; 
 
     for ( i=0 ; old >= oldArr[i] ; i ++){
       Debuff = DebuffArr[i];
@@ -370,11 +370,11 @@ function CoC7th(inputStr){
           }  
 
           //結果判定
-          if (finalRoll == 1) ReStr = ReStr + finalRoll + ' → 恭喜！大成功！';
+          if (finalRoll == 1) ReStr = ReStr + finalRoll + ' → 大 ♂ 成 ♂ 功 ♂';
           else
-            if (finalRoll == 100) ReStr = ReStr + finalRoll + ' → 啊！大失敗！';
+            if (finalRoll == 100) ReStr = ReStr + finalRoll + ' → ...大失敗(拍肩';
           else
-            if (finalRoll <= 99 && finalRoll >= 95 && chack < 50) ReStr = ReStr + finalRoll + ' → 啊！大失敗！';
+            if (finalRoll <= 99 && finalRoll >= 95 && chack < 50) ReStr = ReStr + finalRoll + ' → ...大失敗(拍肩';
           else
             if (finalRoll <= chack/5) ReStr = ReStr + finalRoll + ' → 極限成功';
           else
@@ -415,233 +415,12 @@ function YabasoReply(inputStr) {
 \n這隻的BUG超多，只會說垃圾話；可以問我垃圾話相關指令哦～\
 ';
   else
-  //垃圾話功能說明
-  if (inputStr.match('垃圾話') != null) return '\
-嗚呵呵呵呵，我就知道你們人類沒辦法抗拒垃圾話的。\
-\n目前實裝的垃圾話功能是以下這些：\
-\n運勢：你只要提到我的名字和運勢，我就會回答你的運勢。 \
-\n==\
-\n隨機選擇：只要提到我的名字和[選、挑、決定]，然後空一格打選項。 \
-記得選項之間也要用空格隔開，我就會幫選擇障礙的你挑一個。\
-\n \
-\n看起來很實用對不對～那為什麼會叫做垃圾話呢？\
-\n因為不管哪個功能都有可能會被嗆啊哈哈哈哈哈！\
-';
-  else    
 
-  //CC功能說明
-  if (inputStr.match('cc') != null) return '\
-【CC功能說明】\
-\n \
-\n和凍豆腐一樣，最常用的是「cc<=[數字]」的一般檢定。\
-\n還有「cc([-2~2])<=[數字]」的獎懲骰。\
-\n \
-\n和凍豆腐不同的新增功能如下： \
-\n==\
-\n幕間成長骰：「cc>[數字]」，用於幕間技能成長。\
-\n==\
-\n一鍵創角（核心規則）：「cc 核心創角 [年齡]」，\n以核心規則創角（含年齡調整）。\
-\n==\
-\n一鍵創角（悠子房規）：「cc 悠子創角」，\n主要屬性骰七取五，次要屬性骰四取三，LUK骰二取一。\
-\n==\
-\n一鍵產生背景：「cc bg」，娛樂性質居多的調查員背景產生器\
-';
-  else        
-    
-  //鴨霸獸幫我選～～
-  if(inputStr.match('選') != null||inputStr.match('決定') != null||inputStr.match('挑') != null) {
-    let rplyArr = inputStr.split(' ');
-    
-    if (rplyArr.length == 1) return '靠腰喔要我選也把選項格式打好好不好，真的想被淨灘嗎？';
-    
-    let Answer = rplyArr[Math.floor((Math.random() * (rplyArr.length-1))+ 1)];
-    if(Answer.match('選') != null||Answer.match('決定') != null||Answer.match('挑') != null||Answer.match('鴨霸獸') != null) {
-      rplyArr = ['幹，你不會自己決定嗎', '人生是掌握在自己手裡的', '隨便哪個都好啦', '連這種東西都不能決定，是不是不太應該啊', '沒事別叫我選東西好嗎，難道你們都是天秤座嗎（戰）', '不要把這種東西交給機器人決定比較好吧'];
-      Answer = rplyArr[Math.floor((Math.random() * (rplyArr.length))+ 0)];
-    }
-    return '我想想喔……我覺得，' + Answer + '。';
-  }
-  else  
-    
-    
-  //以下是幫眾限定的垃圾話
-  if(inputStr.match('泰') != null||inputStr.match('ㄩㄊ') != null||inputStr.match('太太') != null) {
-      let rplyArr=['\
-（抱頭）嗚噁噁噁噁噁頭好痛…', '\
-你說什麼……嗚嗚……不要提這個QQ', '\
-哈哈，你說什麼呢……啊啦，眼淚怎麼自己流下來了QQ' ];
-      return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
-    }
-  else
-  if(inputStr.match('超進化') != null) return '超霸獸超進化～～超級機霸獸～～～\n（BGM：http://tinyurl.com/jjltrnt）';
-  else  
-  if(inputStr.match('進化') != null) return '鴨霸獸進化～～超霸獸～～～\n（BGM：http://tinyurl.com/jjltrnt）';
-  else  
-  if(inputStr.match('拔嘴') != null) {
-    let rplyArr=['\
-傳說中，凡是拔嘴過鴨嘴獸的人，有高機率在100年內死去。', '\
-拔嘴的話，我的嘴巴會長出觸手，然後開花成四個花瓣哦 (´×`)', '\
-在澳洲，每過一分鐘就有一隻鴨嘴獸被拔嘴。', '\
-可以的可以的，隨意隨意；反正機械鴨霸獸的嘴是拋棄式的。', '\
-人類每花60秒拔嘴，就減少一分鐘的壽命。'];
-      return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
-    }
-  else
-  if(inputStr.match('路過') != null) {
-    let rplyArr=['\
-我的+9火把呢？'];
-    return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
-  }
-  else  
-  if(inputStr.match('約翰希南') != null||inputStr.match('江西') != null) {
-      let rplyArr=['\
-HIS NAME IS~~~~江～～～西哪～～～～（登等愣～登！！！登瞪愣登！！！）', '\
-江江江江，有一條江耶，來跳江好了。'];
-      return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
-    }
-  else
-  if(inputStr.match('三小') != null) {
-      let rplyArr=['\
-幫主你也敢嘴。', '\
-不要起爭議啦！', '\
-你在大聲什麼啦！'];
-      return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
-    }
-  else  
-  if(inputStr.match('鴨霸幫') != null) return '要加入鴨霸幫是沒有這麼容易的，你必須經過重重考驗，攀登過末日火山，穿越過幽暗水道，戰勝九頭蜥蜴，並且躍過無底深淵。\n\n\n或者你也可以選擇月付１９９９成為白銀幫眾。現在加入前三個月還打八折喔。';
-  else
-  if(inputStr.match('阿想') != null) {
-  let rplyArr=['\
-男的，也可以。', '\
-還好我中壢山蟑螂沒講錯。'];
-      return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
-    }
-  else
-  if(inputStr.match('愛') != null) return '我是不會嗆你的，因為霸獸愛你。';
-  else
-  if(inputStr.match('哈哈哈') != null) return '你的銅鋰鋅咧？';
-  else
-  if(inputStr.match('狂') != null) return '948794狂，你有幫主狂？淨灘啦！';
-  else
-  if(inputStr.match('笑') != null) return '幫主笑阿笑，笑得你心底發寒。';
-  else
-  if(inputStr.match('家訪') != null) return 'ㄉㄅㄑ';
-  else
-  if(inputStr.match('饅頭') != null) return '可愛。';
-  else
-  if(inputStr.match('開司') != null) return '給開司一罐啤酒！';
-  else
-  if(inputStr.match('阿珠') != null) {
-    let rplyArr=['\
-有種哈味。', '\
-不知道今天在誰床上呢？', '\
-路過說他已經(ry'];
-    return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
-  }
-  else  
-  if(inputStr.match('炸彈') != null) {
-      let rplyArr=['\
-野～格～炸～彈～', '\
-那你就帶著野格炸彈吧。', '\
-野、格、炸、彈，我、的、最、愛。' ];
-      return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
-    }
-  else  
-  if(inputStr.match('864') != null||inputStr.match('巴魯斯') != null||inputStr.toLowerCase().match('sora') != null) {
-    let rplyArr=['\
-呃啊啊啊啊啊啊啊啊──！！！不對、我幹嘛要做反應？', '\
-阿，這是新的一天來臨的訊號。', '\
-バルス！', '\
-burrs！', '\
-Barış！', '\
-Bals！', '\
-Barusu！' ];
-
-    return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];    
-    
-  }
-  else
-  if(inputStr.match('康青龍') != null) return '淨灘之力與康青龍同在。';
-  else
-  if(inputStr.match('軒') != null) return '這我一定吉。';
-  else
-  if(inputStr.match('肉食性猛擊') != null) return '想試試嗎？（張嘴）';
-  else
-  if(inputStr.match('俊豪') != null) return '錯誤導入，誤你一生。';
-  else
-  if(inputStr.match('豆腐') != null) return '鴨霸獸不吃。';
-  else
-  if(inputStr.match('包子') != null) return '幹你娘我最討厭的就是包子你還一直提一直提';
-  else
-  if(inputStr.match('鍋貼') != null||inputStr.match('煎餃') != null) return '十二顆一盒，鴨霸獸也不吃，而且無比憎恨它。';
-  else
-  if(inputStr.match('水餃') != null) return '噁噁噁噁噁噁噁噁噁';
-  else
-  if(inputStr.match('蘿蔔') != null) return '我說蘿蔔又白又正又嬌小好像可以抱起來轉；照片我有存，意者請私訊yabaso。';
-  else
-  if(inputStr.match('爪黃') != null) return '痾痾痾你們死定了啦，不用在意那麼多。';
-  else
-  if(inputStr.match('私訊') != null) return '噁噁噁幹好恐怖';
-  else
-  if(inputStr.match('黑熊') != null) {
-    let rplyArr=['\
-中壢李性閃亮的黑熊熊穿浴衣👘～混亂善娘的黑熊熊穿浴衣👘～耶嘿～\n黑熊醬這樣可愛的女孩，沒男朋友真是太不可思議了！', '\
-中壢，李性，閃亮（燦笑）', '\
-混亂善娘（燦笑）', '\
-黑熊熊穿浴衣👘～黑熊熊穿浴衣👘～耶嘿～', '\
-黑熊醬這樣可愛的女孩，沒男朋友真是太不可思議了'];
-    return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
-  }
-  else
     
   //以下是運勢功能
   if(inputStr.match('運勢') != null){
-    let rplyArr=['超大吉','大吉','大吉','中吉','中吉','中吉','小吉','小吉','小吉','小吉','凶','凶','凶','大凶','大凶','你還是，不要知道比較好','這應該不關我的事'];
+    let rplyArr=['天 人 降 臨','大吉','大吉','中吉','中吉','中吉','小吉','小吉','小吉','小吉','凶','凶','凶','大凶','大凶','你還是，不要知道比較好(合十','這應該不關我的事'];
     return '運勢喔…我覺得，' + rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)] + '吧。';
   } 
   
-  //沒有觸發關鍵字則是這個
-  else{
-    let rplyArr = ['\
-你們死定了呃呃呃不要糾結這些……所以是在糾結哪些？', '\
-在澳洲，每過一分鐘就有一隻鴨嘴獸被拔嘴。 \n我到底在共三小。', '\
-嗚噁噁噁噁噁噁，不要隨便叫我。', '\
-幹，你這學不會的豬！', '\
-嘎嘎嘎。', '\
-wwwwwwwwwwwwwwwww', '\
-為什麼你們每天都可以一直玩；玩就算了還玩我。', '\
-好棒，整點了！咦？不是嗎？', '\
-不要打擾我挖坑！', '好棒，誤點了！', '\
-在南半球，一隻鴨嘴獸拍打他的鰭，他的嘴就會掉下來。 \n我到底在共三小。', '\
-什麼東西你共三小。', '\
-哈哈哈哈哈哈哈哈！', '\
-一直叫，你4不4想拔嘴人家？', '\
-一直叫，你想被淨灘嗎？', '\
-幫主你也敢嘴？', '\
-拔嘴的話，我的嘴巴會長出觸手，然後開花成四個花瓣哦 (´×`)', '\
-看看我！！我體內的怪物已經這麼大了！！', '\
-傳說中，凡是拔嘴過鴨嘴獸的人，有高機率在100年內死去。 \n我到底在共三小。', '\
-人類每花60秒拔嘴，就減少一分鐘的壽命。 \n我到底在共三小。', '\
-嘴被拔，就會掉。', '\
-你在大聲什麼啦！！！！', '\
-公道價，八萬一（伸手）。', '\
-你的嘴裡有異音（指）', '\
-噓，安靜跑個團，很難？', '\
-斷！', '\
-在場沒有一個比我帥。', '\
-我不是針對你，我是說在場各位，都是垃圾。', '\
-你知道你很機掰嗎？', '\
-快 …扶我去喝酒 ……', '\
-好好好，下去領五百。', '\
-噁噁噁，躺著也中槍。', '\
-閃開，讓幫主來（脫衣服）。', '\
-現在放棄的話，假期就開始了。', '\
-努力不一定會成功，但是不努力的話，就會很輕鬆喔。', '\
-這種要求，我還是第一次聽到（啃咬）', '\
-你先承認你有病再說。', '\
-ｅｒｒｏｒ：齁，你把鴨霸獸弄壞了。準備迎接幫眾的怒火吧。', '\
-幫主說，有人打你的左臉，你就要用肉食性猛擊咬斷他的小腿。'];
-    return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
-  }
-
 }
