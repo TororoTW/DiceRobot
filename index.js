@@ -459,7 +459,7 @@ function YabasoReply(inputStr) {
       rplyArr = ['啊啊...好法煩啊...自己決定啦(嚼仙貝'];
       Answer = rplyArr[Math.floor((Math.random() * (rplyArr.length))+ 0)];
     }
-    return '我想想喔……我覺得，' + Answer + '。';
+    return '...' + Answer + '。';
   }
   else  
     
