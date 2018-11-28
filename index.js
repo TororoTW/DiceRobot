@@ -408,14 +408,60 @@ function YabasoReply(inputStr) {
 \n要多筆輸出就是先打你要的次數，再空一格打骰數：7 3d6、5 2d6+6  \
 \n現在打成大寫D，我也不會嗆你了哈哈哈。 \
 \n \
-\n目前支援多數CoC 7th指令，可打「鴨霸獸 cc」取得更多說明。 \
+\n目前支援多數CoC 7th指令，可打「toroko cc」取得更多說明。 \
 \n \
 \n其他骰組我都用不到，所以不會去更新哈哈哈哈哈！ \
-\n以上功能靈感來源全部來自悠子桑的Hastur，那隻的功能超完整快加他： @fmc9490c \
-\n這隻的BUG超多，只會說垃圾話；可以問我垃圾話相關指令哦～\
+\n以上功能來源全部來自悠子的Hastur&鴨霸獸的機器人，Hastur的功能超完整快加他： @fmc9490c \
+\n這隻的BUG超多，請小心使用XD\
 ';
   else
+  //垃圾話功能說明
+  if (inputStr.match('垃圾話') != null) return '\
+嗚呵呵呵呵，我就知道你們人類沒辦法抗拒垃圾話的。\
+\n目前實裝的垃圾話功能是以下這些：\
+\n運勢：你只要提到我的名字和運勢，我就會回答你的運勢。 \
+\n==\
+\n隨機選擇：只要提到我的名字和[選、挑、決定]，然後空一格打選項。 \
+記得選項之間也要用空格隔開，我就會幫選擇障礙的你挑一個。\
+\n \
+\n看起來很實用對不對～那為什麼會叫做垃圾話呢？\
+\n因為不管哪個功能都有可能會被嗆啊哈哈哈哈哈！\
+';
+  else    
 
+  //CC功能說明
+  if (inputStr.match('cc') != null) return '\
+【CC功能說明】\
+\n \
+\n和凍豆腐一樣，最常用的是「cc<=[數字]」的一般檢定。\
+\n還有「cc([-2~2])<=[數字]」的獎懲骰。\
+\n \
+\n和凍豆腐不同的新增功能如下： \
+\n==\
+\n幕間成長骰：「cc>[數字]」，用於幕間技能成長。\
+\n==\
+\n一鍵創角（核心規則）：「cc 核心創角 [年齡]」，\n以核心規則創角（含年齡調整）。\
+\n==\
+\n一鍵創角（悠子房規）：「cc 悠子創角」，\n主要屬性骰七取五，次要屬性骰四取三，LUK骰二取一。\
+\n==\
+\n一鍵產生背景：「cc bg」，娛樂性質居多的調查員背景產生器\
+';
+  else        
+    
+  //鴨霸獸幫我選～～
+  if(inputStr.match('選') != null||inputStr.match('決定') != null||inputStr.match('挑') != null) {
+    let rplyArr = inputStr.split(' ');
+    
+    if (rplyArr.length == 1) return '格式啊大大 格式';
+    
+    let Answer = rplyArr[Math.floor((Math.random() * (rplyArr.length-1))+ 1)];
+    if(Answer.match('選') != null||Answer.match('決定') != null||Answer.match('挑') != null||Answer.match('toroko') != null) {
+      rplyArr = ['啊啊...好法煩啊...自己決定啦(嚼仙貝'];
+      Answer = rplyArr[Math.floor((Math.random() * (rplyArr.length))+ 0)];
+    }
+    return '我想想喔……我覺得，' + Answer + '。';
+  }
+  else  
     
   //以下是運勢功能
   if(inputStr.match('運勢') != null){
