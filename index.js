@@ -410,7 +410,7 @@ function YabasoReply(inputStr) {
 \n \
 \n目前支援多數CoC 7th指令，可打「toroko cc」取得更多說明。 \
 \n \
-\n其他骰組我都用不到，所以不會去更新哈哈哈哈哈！ \
+\n其他骰組暫時用不到，所以沒有特地更新 \
 \n以上功能來源全部來自悠子的Hastur&鴨霸獸的機器人，Hastur的功能超完整快加他： @fmc9490c \
 \n這隻的BUG超多，請小心使用XD\
 ';
