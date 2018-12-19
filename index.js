@@ -466,7 +466,7 @@ function YabasoReply(inputStr) {
   //以下是運勢功能
   if(inputStr.match('運勢') != null){
     let rplyArr=['天 人 降 臨','大吉','大吉','中吉','中吉','中吉','小吉','小吉','小吉','小吉','凶','凶','凶','大凶','大凶','非洲歡迎你，朋友','...ZzZzzzzz'];
-    return '好麻煩啊...但好歹是巫女啊...嘖，少女祈禱中啦啦啦...' + rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)] + '吧。';
+    return '好麻煩啊...但好歹是巫女啊...嘖，少女祈禱中啦啦啦...' + rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)] + '';
   } 
   
 }
