@@ -465,8 +465,8 @@ function YabasoReply(inputStr) {
     
   //以下是運勢功能
   if(inputStr.match('運勢') != null){
-    let rplyArr=['天 人 降 臨','大吉','大吉','中吉','中吉','中吉','小吉','小吉','小吉','小吉','凶','凶','凶','大凶','大凶','你還是，不要知道比較好(合十','這應該不關我的事'];
-    return '運勢喔…我覺得，' + rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)] + '吧。';
+    let rplyArr=['天 人 降 臨','大吉','大吉','中吉','中吉','中吉','小吉','小吉','小吉','小吉','凶','凶','凶','大凶','大凶','非洲歡迎你，朋友','...ZzZzzzzz'];
+    return '好麻煩啊...但好歹是巫女啊...嘖，少女祈禱中啦啦啦...' + rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)] + '吧。';
   } 
   
 }
